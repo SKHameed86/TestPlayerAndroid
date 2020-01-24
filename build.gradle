@@ -33,12 +33,6 @@ allprojects {
     }
 }
 
-dependencies {
-    implementation 'uk.co.bbc:smp-android:+'
-    implementation 'uk.co.bbc:smp-an-echo-statistics:1.0.2'
-    implementation 'com.google.code.gson:gson:2.8.2'
-}
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
