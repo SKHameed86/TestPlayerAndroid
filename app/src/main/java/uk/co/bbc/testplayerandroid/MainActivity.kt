@@ -2,7 +2,9 @@ package uk.co.bbc.testplayerandroid
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import uk.co.bbc.httpclient.useragent.UserAgent
+import uk.co.bbc.mediaselector.MediaSelectorClient
 import uk.co.bbc.smpan.SMPBuilder
 import uk.co.bbc.smpan.media.PlayRequest
 import uk.co.bbc.smpan.media.model.MediaContentVpid
@@ -18,6 +20,10 @@ class MainActivity : AppCompatActivity() {
         val avStatisticsProvider = DummyAVStatsProvider()
         val smp = SMPBuilder.create(applicationContext, "TestPlayer", "Android", UserInteractionStatisticsProvider.NULL).build()
 
-        smp.loadFullScreen(PlayRequest.create(MediaContentVpid("m000dlqp", UserAgent(null), "mobile-phone-main"), MediaMetadata.MediaType.ONDEMAND, MediaMetadata.MediaAvType.VIDEO, avStatisticsProvider).build())
+        val mediaSelectorClient = MediaSelectorClient.MediaSelectorClientBuilder().build()
+
+        val mediaContentVpid = MediaContentVpid("m000dly5", UserAgent("a", "b"), "mobile-phone-main")
+
+        smp.loadFullScreen(PlayRequest.create(mediaContentVpid, MediaMetadata.MediaType.ONDEMAND, MediaMetadata.MediaAvType.VIDEO, avStatisticsProvider).withAutoplay(true).build())
     }
 }
